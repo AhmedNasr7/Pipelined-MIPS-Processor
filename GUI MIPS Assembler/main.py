@@ -5,11 +5,6 @@ from PyQt5.uic import loadUiType
 import sys
 from os import path
 import os
-
-
-
-import numpy as np
-
 from PyQt5.QtWidgets import QApplication, QMainWindow, QMenu, QVBoxLayout, QSizePolicy, QMessageBox, QWidget, \
     QPushButton
 from PyQt5.QtGui import QIcon
@@ -63,13 +58,14 @@ class MainApp(QMainWindow, FORM_CLASS):
 
 
     def run_code(self):
-        os.system(self.compile_command)
-        os.system(self.run_command)
+        #os.system(self.compile_command)
+        #os.system(self.run_command) 
+        pass
 
 
 
 
-################################### Graph class ######################################3
+
 
 
 
