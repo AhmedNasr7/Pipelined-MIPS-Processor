@@ -57,15 +57,16 @@ class MainApp(QMainWindow, FORM_CLASS):
 
     def assemble_code(self):
         self.assembler = Assembler(self.textEdit.toPlainText())
+        self.run_code()
 
 
 
 
-def run_code(self):
-    #os.system(self.compile_command)
-    #os.system(self.run_command)
+    def run_code(self):
+        os.system(self.compile_command)
+        os.system(self.run_command)
 
-    pass
+
 
 
 

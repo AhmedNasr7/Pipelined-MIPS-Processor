@@ -133,39 +133,74 @@ class Assembler():
 
                 if (self.command in self.r_type):
                     funct = opcode
+                    funct = self.to_binary(funct, 6)
                     opcode = self.to_binary(0, 6)
+
+                    # getting regs
+                    rd = self.reg_file[self.regs[0]]
+                    rs = self.reg_file[self.regs[1]]
+                    rt = self.reg_file[self.regs[2]]
+
+                    rd = self.to_binary(rd, 5)
+                    rs = self.to_binary(rs, 5)
+                    rt = self.to_binary(rt, 5)
+                    shamnt = self.to_binary(0, 5)
+
+
+                    bin = opcode + rs + rt + rd + shamnt + funct
+
 
 
                 elif (self.command in self.i_type):
-                    pass
+
+                    opcode = self.to_binary(opcode, 6)
+
+                    # getting regs
+                    rs = self.reg_file[self.regs[0]]
+                    rt = self.reg_file[self.regs[1]]
+                    i_value = self.regs[2]
+                    i_value = self.to_binary(i_value, 16)
+                    rs = self.to_binary(rs, 5)
+                    rt = self.to_binary(rt, 5)
+
+                    bin = opcode + rs + rt + i_value
 
                 elif (self.command in self.i_type_lw):
-                    pass
+
+                    opcode = self.to_binary(opcode, 6)
+
+                    # getting regs
+                    rs = self.reg_file[self.regs[0]]
+                    rt = self.reg_file[self.regs[1]]
+                    i_value = self.regs[2]
+                    i_value = self.to_binary(i_value, 16)
+                    rs = self.to_binary(rs, 5)
+                    rt = self.to_binary(rt, 5)
+
+                    bin = opcode + rs + rt + i_value
+
 
                 elif (self.command in self.j_type):
-                    pass
-
-
-
-                if ((type == 'j')):
-
-                    pass
-
+                    opcode = self.to_binary(opcode, 6)
+                    self.jump_addr = self.to_binary(self.jump_addr, 26)
+                    bin = opcode + str(self.jump_addr)
 
             else:
                 pass
 
+            self.load_to_file(bin)
+            print(bin)
 
 
 
 
+    def load_to_file(self, binary):
+
+        with open('instructions.txt', 'a') as f:
+            f.write(binary + '\n')
+            f.close()
 
 
-
-
-
-    def load_to_file(self):
-        pass
 
 
     def remove_spaces(self, text):
