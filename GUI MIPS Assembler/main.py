@@ -8,8 +8,7 @@ import os
 from PyQt5.QtWidgets import QApplication, QMainWindow, QMenu, QVBoxLayout, QSizePolicy, QMessageBox, QWidget, \
     QPushButton
 from PyQt5.QtGui import QIcon
-
-
+from Assembler import *
 
 
 FORM_CLASS,_ = loadUiType(path.join(path.dirname(__file__), "main.ui"))
@@ -43,7 +42,7 @@ class MainApp(QMainWindow, FORM_CLASS):
 
     def init_Buttons(self):
         self.browse_button.clicked.connect(self.openFile)
-        #self.run_button.clicked.connect(self.run_code)
+        self.assemble_button.clicked.connect(self.assemble_code)
 
     def openFile(self):
         options = QFileDialog.Options()
@@ -56,15 +55,17 @@ class MainApp(QMainWindow, FORM_CLASS):
         self.compile_command = "iverilog '" + self.fileName + "' -o " + self.run_command
 
 
-
-    def run_code(self):
-        #os.system(self.compile_command)
-        #os.system(self.run_command) 
-        pass
+    def assemble_code(self):
+        self.assembler = Assembler(self.textEdit.toPlainText())
 
 
 
 
+def run_code(self):
+    #os.system(self.compile_command)
+    #os.system(self.run_command)
+
+    pass
 
 
 
@@ -76,7 +77,6 @@ def main():
     window = MainApp()
     window.show()
     app.exec_()
-
 
 if __name__ == '__main__':
     main()

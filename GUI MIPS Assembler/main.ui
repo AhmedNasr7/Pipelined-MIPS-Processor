@@ -53,7 +53,7 @@
      <string>Select file</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="run_button">
+   <widget class="QPushButton" name="assemble_button">
     <property name="geometry">
      <rect>
       <x>750</x>
